@@ -1,7 +1,13 @@
 import React from 'react'
+import loader from '../../images/loader.jpg'
+import './Loader.css'
 
-export const Loader = () => {
+function Loader(): JSX.Element {
     return (
-        <div>Loader</div>
+        <div className="loader flex flex-c">
+            <img src={loader} alt="loader" />
+        </div>
     )
 }
+
+export default Loader

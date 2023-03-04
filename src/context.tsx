@@ -104,6 +104,7 @@ import React, { useState, useContext, useEffect, useCallback, createContext } fr
 interface Book {
     id: string;
     author: string;
+    cover_id: number,
     edition_count: number;
     first_publish_year: number;
     title: string;
@@ -140,6 +141,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             const data = await response.json();
 
             const docs = data.docs || [];
+            console.log(docs);
+
+
 
             if (docs.length > 0) {
                 const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
@@ -155,6 +159,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                     return {
                         id: key,
                         author: author_name,
+                        cover_id: cover_i,
                         edition_count: edition_count,
                         first_publish_year: first_publish_year,
                         title: title,
@@ -196,3 +201,5 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 export const useGlobalContext = () => {
     return useContext(AppContext);
 };
+
+// export { AppContext, AppProvider };

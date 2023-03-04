@@ -1,1 +1,6 @@
-/*# sourceMappingURL=Loader.css.map */
+.loader {
+  padding: 4rem;
+}
+.loader img {
+  width: 120px;
+}/*# sourceMappingURL=Loader.css.map */
