@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar'
 import SearchForm from '../SearchForm/SearchForm'
 import './Header.css'
 
-export function Header(params: any) {
+export function Header(): JSX.Element {
     return (
         <div className='holder'>
             <header className='header'>

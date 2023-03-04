@@ -1,1 +1,113 @@
-/*# sourceMappingURL=Navbar.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap");
+.navbar {
+  padding: 1.8rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
+}
+
+.navbar-brand {
+  width: 90px;
+  display: flex;
+  flex-direction: row;
+}
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+}
+
+span {
+  margin-left: 2rem;
+}
+
+.brand-and-toggler {
+  width: 100%;
+}
+
+.navbar-content {
+  display: flex;
+  width: 100%;
+}
+
+.navbar-toggler-btn {
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  z-index: 11;
+}
+
+.navbr-collapse {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background-color: #010101;
+  height: 100%;
+  width: 280px;
+  display: flex;
+  padding: 10rem 3rem 0 3rem;
+  transform: translatex(100%);
+  -webkit-transform: translatex(100%);
+  -moz-transform: translatex(100%);
+  -ms-transform: translatex(100%);
+  -o-transform: translatex(100%);
+  transition: var(var(--transition));
+  -webkit-transition: var(var(--transition));
+  -moz-transition: var(var(--transition));
+  -ms-transition: var(var(--transition));
+  -o-transition: var(var(--transition));
+}
+
+.show-navbar-collapse {
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+}
+
+.nav-item {
+  margin-bottom: 1.4rem;
+}
+
+.nav-link {
+  transition: var(var(--transition));
+  -webkit-transition: var(var(--transition));
+  -moz-transition: var(var(--transition));
+  -ms-transition: var(var(--transition));
+  -o-transition: var(var(--transition));
+}
+.nav-link:hover {
+  color: var(#8d27ae);
+}
+
+@media screen and (min-width: 992px) {
+  .navbr-collapse {
+    position: relative;
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    justify-content: flex-end;
+  }
+  .navbar-toggler-btn {
+    display: none;
+  }
+  .nav-item {
+    margin-bottom: 0;
+    margin-left: 2.8rem;
+  }
+  .nav-link {
+    color: #010101;
+    font-size: 1.7rem;
+    font-weight: 500 !important;
+    opacity: 0.8;
+  }
+  .navbar-nav {
+    display: flex;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

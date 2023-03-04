@@ -1,0 +1,22 @@
+.search-form {
+    width: 100%;
+    max-width: 680px;
+}
+
+.search-form-elem {
+    padding: 1.47rem 2.8rem;
+    border-radius: 3.8rem;
+    -webkit-border-radius: 3.8rem;
+    -moz-border-radius: 3.8rem;
+    -ms-border-radius: 3.8rem;
+    -o-border-radius: 3.8rem;
+
+    .form-control {
+        font-size: 2rem;
+        padding: 0.6rem;
+
+        &::placeholder {
+            opacity: 0.9;
+        }
+    }
+}

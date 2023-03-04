@@ -1,5 +1,19 @@
 @import './index_menu';
 
+// TODO
+@media (media-feature: value) {
+  /* Styles go here */
+}
+
+@media (max-width: 600px) {
+  /* Styles for devices with a screen width of 600px or less */
+}
+
+@media (min-resolution: 300dpi) {
+  /* Styles for devices with a high-resolution display */
+}
+
+
 :root {
   --purple-color: #{$purple-color};
   --pink-color: #{$pink-color};
@@ -15,9 +29,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 html {
   font-size: 10px;
 }
+
 body {
   font-size: $font-size;
   line-height: $line-height;
@@ -29,10 +45,12 @@ body {
 ul {
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
   color: $black-color;
 }
+
 button {
   outline: 0;
   border: none;
@@ -40,16 +58,19 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
 img {
   width: 100%;
   display: block;
 }
+
 input {
   border: none;
   outline: 0;
   font-family: inherit;
   font-size: $font-size;
 }
+
 .resize-animattion-stopper * {
   animation: none !important;
   -webkit-animation: none !important;
@@ -64,9 +85,11 @@ input {
 .bg-pink {
   background-color: $pink-color;
 }
+
 .bg-purple {
   background-color: $purple-color;
 }
+
 .bg-white {
   background-color: $white-color;
 }
@@ -75,24 +98,31 @@ input {
 .text-black {
   color: $black-color;
 }
+
 .text-white {
   color: $white-color;
 }
+
 .text-purple {
   color: $purple-color;
 }
+
 .text-light-black {
   color: $light-black-color;
 }
+
 .text-uppercase {
   text-transform: uppercase;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-capitalize {
   text-transform: capitalize;
 }
+
 .text-italic {
   font-style: italic;
 }
@@ -101,21 +131,27 @@ input {
 .fw-3 {
   font-weight: 300;
 }
+
 .fw-4 {
   font-weight: 400;
 }
+
 .fw-5 {
   font-weight: 500;
 }
+
 .fw-6 {
   font-weight: 600;
 }
+
 .fw-7 {
   font-weight: 700;
 }
+
 .fw-8 {
   font-weight: 800;
 }
+
 .fw-9 {
   font-weight: 900;
 }
@@ -124,24 +160,31 @@ input {
 .fs-15 {
   font-size: 1.5rem;
 }
+
 .fs-16 {
   font-size: 1.6rem;
 }
+
 .fs-17 {
   font-size: 1.7 rem;
 }
+
 .fs-18 {
   font-size: 1.8rem;
 }
+
 .fs-20 {
   font-size: 2rem;
 }
+
 .fs-22 {
   font-size: 2.2rem;
 }
+
 .fs-24 {
   font-size: 2.4rem;
 }
+
 .fs-26 {
   font-size: 2.6rem;
 }
@@ -150,6 +193,7 @@ input {
 .ls-1 {
   letter-spacing: 1px;
 }
+
 .ls-2 {
   letter-spacing: 2px;
 }
@@ -158,15 +202,19 @@ input {
   display: flex;
   align-items: center;
 }
+
 .flex-column {
   flex-direction: column;
 }
+
 .flex-c {
   justify-content: center;
 }
+
 .grid {
   display: grid;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

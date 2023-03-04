@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap");
+@media (media-feature: value) {
+  /* Styles go here */
+}
+@media (max-width: 600px) {
+  /* Styles for devices with a screen width of 600px or less */
+}
+@media (-webkit-min-device-pixel-ratio: 3.125), (min-resolution: 300dpi) {
+  /* Styles for devices with a high-resolution display */
+}
 :root {
   --purple-color: #8d27ae;
   --pink-color: #d9176d;

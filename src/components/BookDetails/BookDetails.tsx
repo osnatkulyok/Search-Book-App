@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BookDetails(params: any) {
+function BookDetails(): JSX.Element {
 
     return (
         <div>BookDetails</div>

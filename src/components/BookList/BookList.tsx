@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BookList(params: any) {
+function BookList(): JSX.Element {
 
     return (
         <div>BookList</div>
