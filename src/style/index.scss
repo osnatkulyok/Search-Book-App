@@ -124,7 +124,7 @@ input {
 }
 
 .text-italic {
-  font-style: italic;
+  font-style: $font-style;
 }
 
 // font weights
@@ -222,8 +222,12 @@ input {
 }
 
 // section title
-.section-title h2 {
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 18px 0 24px 0;
+.section-title {
+
+  h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 18px 0 24px 0;
+  }
+
 }
