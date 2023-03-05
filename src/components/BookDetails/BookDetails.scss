@@ -1,5 +1,21 @@
 @import '../../style/index_menu';
 
+@media screen and (min-width: 768px) {
+
+    .book-details-content {
+        grid-template-columns: 40% 60%;
+        gap: 0;
+    }
+
+    .book-details-img {
+        padding: 0 6rem 0 2rem;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
 .book-details {
     padding: 6rem 0;
 }
@@ -71,23 +87,4 @@
         outline: -1px solid slategray;
         border: radius 8px;
     }
-}
-
-@media screen and (min-width: 768px) {
-
-    .book-details-content {
-        grid-template-columns: 40% 60%;
-        gap: 0;
-    }
-
-    .book-details-img {
-        padding: 0 6rem 0 2rem;
-
-        img {
-            max-width: 100%;
-        }
-    }
-
-
-
 }
