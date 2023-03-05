@@ -25,3 +25,33 @@ root.render(
     </BrowserRouter>
   </AppProvider>,
 )
+
+//  TODO typescript option
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// import Home from './pages/Home/Home'
+// import About from './pages/About/About'
+// import BookDetails from './components/BookDetails/BookDetails'
+// import BookList from './components/BookList/BookList'
+// import './style/index.css'
+// import { AppProvider } from './context'
+
+// // Create a root for the React application using ReactDOM.render.
+// const root = document.getElementById('root')
+
+// // Define the routes for the application using BrowserRouter, Routes, and Route components.
+// ReactDOM.render(
+//   <AppProvider>
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />}>
+//           <Route path="about" element={<About />} />
+//           <Route path="book" element={<BookList />} />
+//           <Route path="/book/:id" element={<BookDetails />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   </AppProvider>,
+//   root,
+// )

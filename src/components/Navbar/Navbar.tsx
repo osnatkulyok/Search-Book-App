@@ -19,24 +19,29 @@ function Navbar(): JSX.Element {
                 <div className="brand-and-toggler flex flex-sb">
                     <Link to="/" className="navbar-brand flex">
                         <img src={logo} alt="site logo" />
-
-
+                        <span className="text-uppercase fw-7 fs-24 ls-1">bookhub</span>
                     </Link>
-                    <button type='button' className="navbar-toggle-btn" onClick={handleNavbar}>
+                    <button type='button' className="navbar-toggler-btn" onClick={handleNavbar}>
                         {/* TODO convert to scss */}
-                        <HiOutlineMenuAlt3 size={35} style={{ color: `${toggleMenu ? '#fff' : '#010101'}` }} />
+                        <HiOutlineMenuAlt3
+                            size={35}
+                            style={{
+                                color: `${toggleMenu ? '#fff' : '#010101'}`
+                            }} />
                     </button>
-                    <span className="text-uppercae fw-7 fs-24 ls-1">bookhub</span>
                 </div>
 
 
-                <div className={toggleMenu ? "navbar-collapse show-navbar-collapse" : "navbar-collapse"}>
+                <div className={
+                    toggleMenu
+                        ? "navbar-collapse show-navbar-collapse" : "navbar-collapse"}>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to="book" className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">Home</Link>
+                            <Link to="book"
+                                className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="book" className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">About</Link>
+                            <Link to="about" className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">About</Link>
                         </li>
                     </ul>
                 </div>
