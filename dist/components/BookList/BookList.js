@@ -1,43 +1,8 @@
 "use strict";
-// import React from 'react'
-// import { useGlobalContext } from 'src/context'
-// import Book from './Book'
-// import Loading from '../Loader/Loader'
-// import cover_not_found from '../../images/cover_not_found.jpg'
-// import './BookList.css'
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// function BookList(): JSX.Element {
-//     const { books, loading, resultTitle } = useGlobalContext()
-//     const booksWithCovers = books.map((singleBook) => {
-//         return {
-//             ...singleBook,
-//             // removing /works/ to get only id
-//             id: (singleBook.id).replace("/works/", ""),
-//             cover_img: singleBook.cover_id ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg` : cover_not_found
-//         }
-//     })
-//     if (loading) return <Loading />
-//     return (
-//         <section className="booklist">
-//             <div className="container">
-//                 <div className="section-title">
-//                     <h2>{resultTitle}</h2>
-//                 </div>
-//                 <div className="booklist-content grid">
-//                     {booksWithCovers.slice(0, 30).map((item, index) => {
-//                         return (
-//                             <Book key={index} {...item} />
-//                         )
-//                     })}
-//                 </div>
-//             </div>
-//         </section>
-//     )
-// }
-// export default BookList
 const react_1 = __importDefault(require("react"));
 const context_1 = require("src/context");
 const Book_1 = __importDefault(require("./Book"));

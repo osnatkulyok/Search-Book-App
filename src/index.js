@@ -6,7 +6,7 @@ import About from './pages/About/About.tsx'
 import BookDetails from './components/BookDetails/BookDetails.tsx'
 import BookList from './components/BookList/BookList.tsx'
 import './style/index.css'
-import { AppProvider } from '../src/context'
+import { AppProvider } from './context'
 
 // Create a root for the React application using ReactDOM.createRoot.
 const root = ReactDOM.createRoot(document.getElementById('root'))
