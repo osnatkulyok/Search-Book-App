@@ -49,7 +49,7 @@ function SearchForm(): JSX.Element {
                             <input type="text" className="form-control" placeholder='the lost world...' ref={searchText} />
                             <button type='submit' className="flex flex-c">
                                 {/* Search icon */}
-                                <FaSearch className="text-purple" size={32} />
+                                <FaSearch className="text-purple search-glass" size={32} />
                             </button>
                         </div>
                     </form>
