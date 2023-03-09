@@ -1,12 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-
-
-function Welcome(): JSX.Element {
-    return (
-        <div>Welcome</div>
-
-    )
+// Define the Welcome component with a username prop
+interface WelcomeProps {
+    username: string;
 }
 
-export default Welcome
+const Welcome: React.FC<WelcomeProps> = ({ username }) => {
+    return (
+        <div>
+            <h1>Welcome, {username}!</h1>
+            <p>You have successfully logged in.</p>
+        </div>
+    );
+};
+
+export default Welcome;
