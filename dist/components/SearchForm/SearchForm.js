@@ -67,6 +67,6 @@ function SearchForm() {
                     react_1.default.createElement("div", { className: "search-form-elem flex flex-sb bg-white" },
                         react_1.default.createElement("input", { type: "text", className: "form-control", placeholder: 'the lost world...', ref: searchText }),
                         react_1.default.createElement("button", { type: 'submit', className: "flex flex-c" },
-                            react_1.default.createElement(fa_1.FaSearch, { className: "text-purple", size: 32 }))))))));
+                            react_1.default.createElement(fa_1.FaSearch, { className: "text-purple search-glass", size: 32 }))))))));
 }
 exports.default = SearchForm;
