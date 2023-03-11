@@ -95,7 +95,7 @@ span {
     justify-content: flex-end;
   }
   .navbar-toggler-btn {
-    display: none;
+    display: inline;
   }
   .nav-item {
     margin-bottom: 0;
