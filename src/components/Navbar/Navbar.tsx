@@ -38,10 +38,11 @@ function Navbar(): JSX.Element {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link to="book"
+                                target={'_blank'}
                                 className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="about" className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">About</Link>
+                            <Link to="about" target={'_blank'} className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">About</Link>
                         </li>
                     </ul>
                 </div>
@@ -51,3 +52,4 @@ function Navbar(): JSX.Element {
 }
 
 export default Navbar
+
