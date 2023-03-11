@@ -73,6 +73,12 @@ span {
     -o-transform: translateX(0);
 }
 
+.navbar-welcome {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+
 .nav-item {
     margin-bottom: 1.4rem;
 }
@@ -121,7 +127,7 @@ span {
     }
 
     .navbar-nav {
-        display: flex;
+        display: row;
     }
 
 

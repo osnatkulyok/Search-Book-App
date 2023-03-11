@@ -31,7 +31,8 @@ function BookList(): JSX.Element {
                     <h2>{resultTitle}</h2>
                 </div>
                 <div className="booklist-content grid">
-                    {booksWithCovers.slice(0, 30).map((item, index) => {
+                    {/*Search results is limited to 20. */}
+                    {booksWithCovers.slice(0, 20).map((item, index) => {
                         return (
                             <Book key={index} {...item} />
                         );

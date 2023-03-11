@@ -1,17 +1,19 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Navbar.css'
-import { HiOutlineMenuAlt3 } from 'react-icons/hi'
-import logo from '../../images/logo.jpg'
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import logo from '../../images/logo.jpg';
 
+interface NavbarProps {
+    isLoggedIn: boolean;
+    user: string;
+}
 
-
-function Navbar(): JSX.Element {
-    // Using the state hook to keep track of the Navbar's menu toggle
+function Navbar({ isLoggedIn, user }: NavbarProps): JSX.Element {
     const [toggleMenu, setToggleMenu] = useState<boolean>(false);
-    // Function to handle the Navbar menu toggle
-    const handleNavbar = (): void => setToggleMenu(!toggleMenu)
+
+    const handleNavbar = (): void => setToggleMenu(!toggleMenu);
 
     return (
         <nav className="navbar" id="navbar">
@@ -21,35 +23,52 @@ function Navbar(): JSX.Element {
                         <img src={logo} alt="site logo" />
                         <span className="text-uppercase fw-7 fs-24 ls-1">bookhub</span>
                     </Link>
-                    <button type='button' className="navbar-toggler-btn" onClick={handleNavbar}>
-                        {/* TODO convert to scss */}
+                    <div className="navbar-welcome">
+                        {isLoggedIn && <span className="text-uppercase fw-7 fs-16 ls-1">Hi {user}</span>}
+                    </div>
+                    <button
+                        type="button"
+                        className="navbar-toggler-btn"
+                        onClick={handleNavbar}
+                    >
                         <HiOutlineMenuAlt3
                             size={35}
                             style={{
-                                color: `${toggleMenu ? '#fff' : '#010101'}`
-                            }} />
+                                color: `${toggleMenu ? '#fff' : '#010101'}`,
+                            }}
+                        />
                     </button>
                 </div>
 
-
-                <div className={
-                    toggleMenu
-                        ? "navbar-collapse show-navbar-collapse" : "navbar-collapse"}>
+                <div
+                    className={
+                        toggleMenu
+                            ? 'navbar-collapse show-navbar-collapse'
+                            : 'navbar-collapse'
+                    }
+                >
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to="book"
-                                target={'_blank'}
-                                className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">Home</Link>
+                            <Link
+                                to="book"
+                                className="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+                            >
+                                Home
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="about" target={'_blank'} className="nav-link text-uppercase text-white fs-22 fw-6 ls-1">About</Link>
+                            <Link
+                                to="about"
+                                className="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+                            >
+                                About
+                            </Link>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav >
-    )
+        </nav>
+    );
 }
 
-export default Navbar
-
+export default Navbar;
