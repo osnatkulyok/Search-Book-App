@@ -5,9 +5,12 @@ import './Navbar.css'
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import logo from '../../images/logo.jpg'
 
+interface NavbarProps {
+    isLoggedIn: boolean;
+    user: string;
+}
 
-
-function Navbar(): JSX.Element {
+function Navbar(props: NavbarProps): JSX.Element {
     // Using the state hook to keep track of the Navbar's menu toggle
     const [toggleMenu, setToggleMenu] = useState<boolean>(false);
     // Function to handle the Navbar menu toggle
@@ -51,5 +54,4 @@ function Navbar(): JSX.Element {
     )
 }
 
-export default Navbar
-
+export default Navbar;
