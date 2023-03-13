@@ -71,6 +71,15 @@ function Navbar({ isLoggedIn, user }: NavbarProps): JSX.Element {
                                 About
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link
+                                to="wishlist"
+                                className="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+                                onClick={handleLinkClick}
+                            >
+                                WishList
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
