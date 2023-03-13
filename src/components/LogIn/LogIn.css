@@ -1,44 +1,52 @@
 h2 {
-  margin-top: 35px;
-  margin-left: 100px;
+  margin-top: 1em;
+  margin-left: 13.5%;
   font-size: 3rem;
 }
 
 .monkey-pic {
   margin-left: 15%;
-  margin-right: 20px;
+  margin-right: 3%;
   position: absolute;
   top: 42%;
-  right: 50px;
+  right: 5%;
   transform: translateY(-50%);
 }
 .monkey-pic img {
-  width: 30%;
-  height: 35%;
+  width: 40%;
+  height: auto;
 }
 
 .login-body {
   background-color: #decfcf;
-  border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.2);
+  padding: 2rem;
   position: absolute;
-  top: 50%;
-  right: 70px;
+  top: 54%;
+  right: 8%;
   transform: translateY(-50%);
-  width: 400px;
+  width: 40%;
+}
+@media screen and (max-width: 768px) {
+  .login-body {
+    width: 45%;
+    right: 8.5%;
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+  }
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .form-group input[type=text],
 .form-group input[type=password] {
   display: block;
   width: 50%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
+  padding: 0.75em;
+  margin-bottom: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 2rem;
   line-height: 1.5;
@@ -46,10 +54,6 @@ h2 {
   background-color: #fff;
   background-clip: padding-box;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -webkit-border-radius: 2rem;
-  -moz-border-radius: 2rem;
-  -ms-border-radius: 2rem;
-  -o-border-radius: 2rem;
 }
 .form-group input[type=text]:focus,
 .form-group input[type=password]:focus {
@@ -71,44 +75,36 @@ h2 {
   background-color: #fff;
   border-color: #fff;
 }
-
 @media screen and (max-width: 768px) {
-  h2 {
-    font-size: 2.8rem;
-    margin-top: 50px;
-    margin-left: 14%;
-    margin-right: 20px;
-  }
-  .monkey-pic {
-    right: 50px;
-    margin-top: 3%;
-  }
-  .login-body {
-    right: 75px;
-    width: 340px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  .form-group .login-body {
+    width: 20%;
   }
   .form-group input[type=text],
   .form-group input[type=password] {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 }
+
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 3.5rem;
-    margin-left: 125px;
+    margin-left: 13%;
   }
   .monkey-pic {
-    right: 30px;
+    right: 46%;
+  }
+  .monkey-pic img {
+    width: 50%;
   }
   .login-body {
-    right: 50px;
-    width: 400px;
+    right: 35%;
+    width: 30%;
+    position: absolute;
+    transform: translateY(-50%);
   }
-  .form-group input[type=text],
-  .form-group input[type=password] {
+  .login-body .form-group input[type=text],
+  .login-body .form-group input[type=password] {
     width: 50%;
   }
 }/*# sourceMappingURL=LogIn.css.map */
