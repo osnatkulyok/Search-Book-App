@@ -1,40 +1,51 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { readUserCredentialsFromFile, writeUserCredentialsToFile } from './fileUtils';
+import monkey from '../../images/monkey.jpg'
+import './LogIn.css'
 
-function Login(props: { onLogin: (username: string) => void }): JSX.Element {
+type Props = {
+    onLogin: (username: string) => void;
+};
+
+function Login(props: Props): JSX.Element {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    // Function to handle sign in
     const handleSignIn = (): void => {
-        if (typeof username !== 'string' || typeof parseInt(password) !== 'number') {
-            alert('Invalid username or password!');
+        const isValidUsername = typeof username === 'string' && isNaN(Number(username));
+        const isValidPassword = /^\d+$/.test(password);
+
+        if (!isValidUsername || !isValidPassword) {
+            alert('Invalid username or password! \n keep username string only and password munber only. ');
         } else {
-            const userCredentials = readUserCredentialsFromFile('userCredentials.json');
-            const isCredentialsValid = checkCredentials(userCredentials, username, password);
-            if (isCredentialsValid) {
-                // Call the onLogin function passed in as a prop if successful
-                props.onLogin(username);
-            } else {
-                alert('Invalid username or password!');
-            }
+            // TODO: Check if the user exists and if the password is correct
+            // Call the onLogin function passed in as a prop if successful
+            props.onLogin(username);
         }
     };
 
+
+    // Function to handle username input changes
     const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUsername(e.target.value);
     };
 
+    // Function to handle password input changes
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setPassword(e.target.value);
     };
 
     return (
         <div className="login-container">
+            <h2>Welcome to BookHub</h2>
+            <div className="monkey-pic">
+                <img src={monkey} alt="monkey-pic" />
+            </div>
             <div className="login-body">
-                <h2>Welcome to BookHub</h2>
+                <h3>Get started with a free account </h3>
                 <div className="form-group">
-                    <label htmlFor="username">Username:</label>
+                    <label className='label' htmlFor="username">Username:</label>
                     <input
                         type="text"
                         id="username"
@@ -68,20 +79,5 @@ function Login(props: { onLogin: (username: string) => void }): JSX.Element {
         </div>
     );
 }
-
-function checkCredentials(
-    userCredentials: Record<string, number>,
-    username: string,
-    password: string
-): boolean {
-    if (userCredentials[username] === parseInt(password)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Create the userCredentials file if it doesn't exist already
-writeUserCredentialsToFile('userCredentials.json', {});
 
 export default Login;

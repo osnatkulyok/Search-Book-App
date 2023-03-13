@@ -1,0 +1,73 @@
+h2 {
+  margin-top: 35px;
+  margin-left: 110px;
+  font-size: 3rem;
+}
+
+.monkey-pic {
+  margin-left: 15%;
+  margin-right: 15px;
+  position: absolute;
+  top: 42%;
+  right: 50px;
+  transform: translateY(-50%);
+}
+.monkey-pic img {
+  width: 30%;
+  height: 35%;
+}
+
+.login-body {
+  background-color: #decfcf;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  right: 65px;
+  transform: translateY(-50%);
+  width: 400px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 1rem;
+}
+.form-group input[type=text],
+.form-group input[type=password] {
+  display: block;
+  width: 50%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+.form-group input[type=text]:focus,
+.form-group input[type=password]:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.form-group input[type=text]:hover,
+.form-group input[type=password]:hover {
+  color: #495057;
+  background-color: #f5f5f5;
+  border-color: #8b8b8b;
+}
+.form-group input[type=text]:active,
+.form-group input[type=password]:active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #fff;
+}/*# sourceMappingURL=LogIn.css.map */

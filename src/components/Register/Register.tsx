@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 interface RegisterProps {
     setUser: React.Dispatch<React.SetStateAction<{ username: string; password: string } | null>>;
 }

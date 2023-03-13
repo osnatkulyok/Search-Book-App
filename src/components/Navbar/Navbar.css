@@ -13,18 +13,23 @@
   width: 40px;
   height: 40px;
 }
-
-span {
+.navbar-brand span {
   margin-left: 2rem;
 }
 
 .brand-and-toggler {
   width: 100%;
+  display: flex;
 }
 
 .navbar-content {
   display: flex;
   width: 100%;
+}
+
+.navbar-welcome {
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .navbar-toggler-btn {
@@ -64,6 +69,10 @@ span {
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
+}
+
+.menu-clicked {
+  display: none;
 }
 
 .nav-item {
