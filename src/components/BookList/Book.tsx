@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 import './BookList.css'
 
 // Define a type for the props passed to the Book component
-export interface BookProps {
+export type BookProps = {
     id: string;
     cover_img: string;
     title: string;
     author: string[];
     edition_count: number;
     first_publish_year: number;
-}
+    onAddToWishlist: (bookId: string) => void;
+};
 
 function Book(book: BookProps): JSX.Element {
 

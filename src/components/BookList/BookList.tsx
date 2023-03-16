@@ -5,19 +5,23 @@ import Loading from '../Loader/Loader';
 import cover_not_found from '../../images/cover_not_found.jpg';
 import './BookList.css';
 
-function BookList(): JSX.Element {
+type BookListProps = {
+    onAddToWishlist: (bookId: string) => void;
+};
+
+function BookList({ onAddToWishlist }: BookListProps): JSX.Element {
     // Get books, loading, and resultTitle from the global context
     const { books, loading, resultTitle } = useGlobalContext();
 
-    // Map each book to a new object that includes an ID and cover image URL
     const booksWithCovers: BookProps[] = books.map((singleBook) => {
         return {
             ...singleBook,
             // Remove the "/works/" prefix from the book ID to create a valid URL parameter
-            id: (singleBook.id).replace("/works/", ""),
+            id: (singleBook.id as string).replace("/works/", ""),
             // Use the Open Library Covers API to get the cover image URL
             cover_img: singleBook.cover_id ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg` : cover_not_found,
-            author: Array.isArray(singleBook.author) ? singleBook.author : [singleBook.author]
+            author: Array.isArray(singleBook.author) ? singleBook.author : [singleBook.author],
+            onAddToWishlist: onAddToWishlist,
         };
     });
 
