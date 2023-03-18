@@ -22,6 +22,7 @@ function BookList({ onAddToWishlist }: BookListProps): JSX.Element {
             cover_img: singleBook.cover_id ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg` : cover_not_found,
             author: Array.isArray(singleBook.author) ? singleBook.author : [singleBook.author],
             onAddToWishlist: onAddToWishlist,
+            isFavorite: false // add this property with a default value
         };
     });
 

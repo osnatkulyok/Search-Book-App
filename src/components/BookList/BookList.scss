@@ -86,8 +86,23 @@
 }
 
 .book-item-info-item.publish-year {
+
     opacity: 0.6;
     font-style: $font-style;
     font-size: 14px;
 
+}
+
+.wishlist-btn {
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    //setthepositionofthebuttontoabsolute//bottom: 0;
+    //positionthebuttonatthebottomoftheparentelement//right: 0;
+    //positionthebuttonattherightoftheparentelementbackground-color: red;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    padding-bottom: 100px;
 }
