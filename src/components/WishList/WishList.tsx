@@ -1,69 +1,57 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { BookProps } from '../BookList/Book';
 
-// // Define the type of props expected by the component
-// type WishlistItemProps = {
-//     book: BookProps; // The book object to display
-//     onRemove: (bookId: string) => void; // A callback function to remove the book from the wishlist
+// type WishlistProps = {
+//     wishlistItems: BookProps[];
+//     onAddToWishlist: (bookId: string) => void;
 // };
 
-// // Define the component function
-// export function WishList({ book, onRemove }: WishlistItemProps): JSX.Element {
+// export function WishList({ wishlistItems = [], onAddToWishlist }: WishlistProps): JSX.Element {
 
-//     // Define the state for the list of favorite books
-//     const [favorites, setFavorites] = useState<BookProps[]>([]);
+//     const [showFavorites, setShowFavorites] = useState(false);
 
-//     // Destructure the book object properties
-//     const { id, title, author, cover_img } = book ?? {};
-
-//     // Define a function to handle the "Remove" button click event
-//     const handleRemoveClick = () => {
-//         onRemove(id);
+//     const handleShowFavoritesClick = () => {
+//         setShowFavorites(!showFavorites);
 //     };
 
-//     // Define a function to handle the "Add to Favorites" button click event
-//     const handleAddToFavorites = () => {
-//         setFavorites([...favorites, book]);
+//     const handleRemoveClick = (bookId: string) => {
+//         onAddToWishlist(bookId);
 //     };
 
-//     // Define a function to handle the "Remove from Favorites" button click event
-//     const handleRemoveFromFavorites = () => {
-//         const filteredFavorites = favorites.filter((favorite) => favorite.id !== id);
-//         setFavorites(filteredFavorites);
-//     };
 
-//     // Check if the book is already in the favorites list
-//     const isFavorite = favorites.some((favorite) => favorite.id === id);
+//     const filteredList = showFavorites
+//         ? wishlistItems.filter((item) => item.isFavorite)
+//         : wishlistItems;
 
-//     // Return the JSX elements to display the book details and buttons
 //     return (
-//         <div className="wishlist-item" style={{ backgroundColor: 'black' }}>
-//             <img src={cover_img} alt={title} />
-//             <div className="wishlist-item-details">
-//                 <h3>{title}</h3>
-//                 {author && <p>By: {author.join(', ')}</p>}
-//             </div>
-//             {isFavorite ? (
-//                 <button onClick={handleRemoveFromFavorites}>Remove from Favorites</button>
+//         <div>
+//             <h2>Wishlist</h2>
+//             <button onClick={handleShowFavoritesClick}>
+//                 {showFavorites ? 'Show All Books' : 'Show Favorites'}
+//             </button>
+//             {filteredList.length > 0 ? (
+//                 filteredList.map((item) => (
+//                     <div key={item.id}>
+//                         <h3>{item.title}</h3>
+//                         <p>Author: {item.author}</p>
+//                         <button onClick={() => handleRemoveClick(item.id)}>Remove</button>
+//                     </div>
+//                 ))
 //             ) : (
-//                 <button onClick={handleAddToFavorites}>Add to Favorites</button>
+//                 <p>No items in the wishlist</p>
 //             )}
-//             <button onClick={handleRemoveClick}>Remove from Wishlist</button>
 //         </div>
 //     );
 // }
-//////////////////////
-import React, { useState } from 'react';
-import { BookProps } from '../BookList/Book';
-
-type WishlistProps = {
-    wishlistItems: BookProps[];
-    book: BookProps;
-    onRemove: (bookId: string) => void;
-};
+////////////////////////import React from "react";import React from "react";
+import { useGlobalContext } from "../../context";
 
 
-export function WishList({ wishlistItems, onRemove }: WishlistProps): JSX.Element {
+function WishList(): JSX.Element {
+    const { wishlist, removeFromWishlist } = useGlobalContext(); // Destructure wishlist and removeFromWishlist from the context
+    console.log('wishlist:', wishlist);
+
+
     const [showFavorites, setShowFavorites] = useState(false);
 
     const handleShowFavoritesClick = () => {
@@ -71,12 +59,12 @@ export function WishList({ wishlistItems, onRemove }: WishlistProps): JSX.Elemen
     };
 
     const handleRemoveClick = (bookId: string) => {
-        onRemove(bookId);
+        removeFromWishlist(bookId);
     };
 
     const filteredList = showFavorites
-        ? wishlistItems.filter((item) => item.isFavorite)
-        : wishlistItems;
+        ? wishlist.filter((item) => item.isFavorite)
+        : wishlist;
 
     return (
         <div>
@@ -86,9 +74,11 @@ export function WishList({ wishlistItems, onRemove }: WishlistProps): JSX.Elemen
             </button>
             {filteredList.length > 0 ? (
                 filteredList.map((item) => (
-                    // <WishList key={item.id} book={item} onRemove={handleRemoveClick} />
-                    <WishList book={item} onRemove={handleRemoveClick} wishlistItems={[]} />
-
+                    <div key={item.id}>
+                        <h3>{item.title}</h3>
+                        <p>Author: {item.author_name.join(', ')}</p> {/* Update this line */}
+                        <button onClick={() => handleRemoveClick(item.id)}>Remove</button>
+                    </div>
                 ))
             ) : (
                 <p>No items in the wishlist</p>
@@ -96,3 +86,6 @@ export function WishList({ wishlistItems, onRemove }: WishlistProps): JSX.Elemen
         </div>
     );
 }
+
+
+export default WishList;

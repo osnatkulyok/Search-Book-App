@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from 'src/context';
 import Book, { BookProps } from './Book';
 import Loading from '../Loader/Loader';
@@ -6,40 +6,64 @@ import cover_not_found from '../../images/cover_not_found.jpg';
 import './BookList.css';
 
 type BookListProps = {
-    onAddToWishlist: (bookId: string) => void;
+    onAddToWishlist: (book: {
+        id: string;
+        title: string;
+        author: string[];
+        cover_img: string;
+        edition_count: number;
+        first_publish_year: number;
+    }) => void;
 };
 
 function BookList({ onAddToWishlist }: BookListProps): JSX.Element {
     // Get books, loading, and resultTitle from the global context
     const { books, loading, resultTitle } = useGlobalContext();
 
+    const [showFavorites, setShowFavorites] = useState(false); // Add state to track whether to show only favorites or all books
+
     const booksWithCovers: BookProps[] = books.map((singleBook) => {
         return {
             ...singleBook,
-            // Remove the "/works/" prefix from the book ID to create a valid URL parameter
-            id: (singleBook.id as string).replace("/works/", ""),
-            // Use the Open Library Covers API to get the cover image URL
-            cover_img: singleBook.cover_id ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg` : cover_not_found,
-            author: Array.isArray(singleBook.author) ? singleBook.author : [singleBook.author],
+            // Check if the book ID exists before trying to remove the "/works/" prefix
+            id: singleBook.id
+                ? (singleBook.id as string).replace('/works/', '')
+                : '',
+            cover_img: singleBook.cover_id
+                ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg`
+                : cover_not_found,
+            author: Array.isArray(singleBook.author)
+                ? singleBook.author
+                : [singleBook.author],
             onAddToWishlist: onAddToWishlist,
-            isFavorite: false // add this property with a default value
+            isFavorite: false,
         };
     });
 
+
     // Show a loading spinner if books are still being fetched
     if (loading) return <Loading />;
+
+    // Filter the books to show only favorites if the toggle is on
+    const booksToDisplay = showFavorites
+        ? booksWithCovers.filter((book) => book.isFavorite)
+        : booksWithCovers;
 
     return (
         <section className="booklist">
             <div className="container">
                 <div className="section-title">
                     <h2>{resultTitle}</h2>
+                    <button
+                        className="btn"
+                        onClick={() => setShowFavorites(!showFavorites)}
+                    >
+                        {showFavorites ? 'Show All Books' : 'Show Favorites'}
+                    </button>
                 </div>
                 <div className="booklist-content grid">
-                    {booksWithCovers.slice(0, 30).map((item, index) => {
-                        return (
-                            <Book key={index} {...item} />
-                        );
+                    {booksToDisplay.slice(0, 30).map((item, index) => {
+                        return <Book key={index} {...item} />;
                     })}
                 </div>
             </div>

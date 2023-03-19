@@ -364,4 +364,125 @@ wishlist button<div className="book-item-info-item wishlist-btn">
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
                             </svg>
                         </button>
-                    </div> 
+                    </div>
+///////////////contextimport React, { createContext, useState, useCallback, useEffect, useContext } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import BookList from "./components/BookList/BookList";
+
+interface Book {
+    id: string;
+    key: string;
+    author: string[];
+    cover_id: number,
+    edition_count: number;
+    first_publish_year: number;
+    title: string;
+}
+
+const URL = "https://openlibrary.org/search.json?title=";
+
+export const AppContext = createContext<{
+    loading: boolean;
+    books: Book[];
+    setSearchTerm: (searchTerm: string) => void;
+    resultTitle: string;
+    setResultTitle: (resultTitle: string) => void;
+}>({
+    loading: true,
+    books: [],
+    setSearchTerm: () => { },
+    resultTitle: "",
+    setResultTitle: () => { },
+});
+
+export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+
+    const [searchTerm, setSearchTerm] = useState<string>("the lost world");
+    const [books, setBooks] = useState<Book[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [resultTitle, setResultTitle] = useState<string>("");
+
+    const fetchBooks = useCallback(async () => {
+        setLoading(true);
+
+        try {
+            const response = await fetch(`${URL}${searchTerm}`);
+            const data = await response.json();
+
+            const docs = data.docs || [];
+            console.log(docs);
+
+            if (docs.length > 0) {
+                const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
+                    const {
+                        key,
+                        author_name,
+                        cover_id,
+                        edition_count,
+                        first_publish_year,
+                        title,
+                    } = bookSingle;
+
+                    return {
+                        key: key,
+                        author_name: author_name,
+                        cover_id: cover_id,
+                        edition_count: edition_count,
+                        first_publish_year: first_publish_year,
+                        title: title,
+                    };
+                });
+
+                setBooks(newBooks);
+
+                if (newBooks.length > 1) {
+                    setResultTitle("Your Search Result");
+                } else {
+                    setResultTitle("No Search Result Found!");
+                }
+            } else {
+                setBooks([]);
+                setResultTitle("No Search Result Found!");
+            }
+
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }, [searchTerm]);
+
+    useEffect(() => {
+        fetchBooks();
+    }, [searchTerm, fetchBooks]);
+
+    return (
+        <AppContext.Provider
+            value={{ loading, books, setSearchTerm, resultTitle, setResultTitle }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export const useGlobalContext = () => {
+    return useContext(AppContext);
+};
+
+function ParentComponent() {
+    const [showFavorites, setShowFavorites] = useState(false);
+
+    return (
+        <>
+            <Navbar
+                isLoggedIn={true}
+                user="John Doe"
+                showFavorites={showFavorites}
+                setShowFavorites={setShowFavorites}
+            />
+            <BookList onAddToWishlist={() => { }} />
+        </>
+    );
+}
+
+export default ParentComponent;
