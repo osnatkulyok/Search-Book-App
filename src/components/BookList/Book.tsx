@@ -1,7 +1,51 @@
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import './BookList.css';
+// import { useGlobalContext } from '../../context';
+
+// export type BookProps = {
+//     isFavorite: boolean;
+//     id: string;
+//     cover_img: string;
+//     title: string;
+//     author: string[];
+//     edition_count: number;
+//     first_publish_year: number;
+//     isWishlist?: boolean;
+//     onAddToWishlist: (book: {
+//         id: string;
+//         title: string;
+//         author: string[];
+//         cover_img: string;
+//         edition_count: number;
+//         first_publish_year: number;
+//     }) => void;
+// };
+
+// function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
+//     const { removeFromWishlist } = useGlobalContext();
+
+//     function handleWishlistButton() {
+//         const bookToAdd = {
+//             id,
+//             title,
+//             author,
+//             cover_img,
+//             edition_count,
+//             first_publish_year,
+//         };
+
+//         if (isFavorite) {
+//             removeFromWishlist(id);
+//         } else {
+//             onAddToWishlist(bookToAdd);
+//         }
+//     }
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './BookList.css';
-import { useGlobalContext } from '../../context';
+import { useGlobalContext, Book as BookType } from '../../context';
 
 export type BookProps = {
     isFavorite: boolean;
@@ -11,40 +55,33 @@ export type BookProps = {
     author: string[];
     edition_count: number;
     first_publish_year: number;
-    onAddToWishlist: (book: {
-        id: string;
-        title: string;
-        author: string[];
-        cover_img: string;
-        edition_count: number;
-        first_publish_year: number;
-    }) => void;
+    isWishlist?: boolean;
+    onAddToWishlist: (book: BookType) => void;
 };
 
-// let counter = 0;
-// const myArray: string[] = [];
-
-function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist }: BookProps): JSX.Element {
+function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
+    const { removeFromWishlist } = useGlobalContext();
 
     function handleWishlistButton() {
-        console.log('hey handle wishlist just pressed');
-        // myArray.push(title);
-        // counter += 1;
-        // console.log(myArray);
-        // console.log(counter);
+        const bookToAdd = {
+            id,
+            title,
+            author,
+            cover_img,
+            edition_count,
+            first_publish_year,
+            key: '',
+            author_name: author,
+            cover_id: 0,
+            isFavorite: isFavorite,
+        };
 
-        if (typeof onAddToWishlist === 'function') {
-            onAddToWishlist({
-                id,
-                title,
-                author,
-                cover_img,
-                edition_count,
-                first_publish_year,
-            });
+        if (isFavorite) {
+            removeFromWishlist(id);
+        } else {
+            onAddToWishlist(bookToAdd);
         }
     }
-    console.log('wishlist:', wishlist);
     return (
         <div className="book-item flex flex-column flex-sb">
             <div className="book-item-img">
