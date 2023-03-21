@@ -16,6 +16,7 @@ export type BookProps = {
     onAddToWishlist: (book: BookType) => void;
 };
 
+
 function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
     const { removeFromWishlist } = useGlobalContext();
 

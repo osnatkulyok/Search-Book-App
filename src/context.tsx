@@ -1,5 +1,5 @@
-
 import React, { useState, useContext, useEffect, useCallback, createContext } from "react";
+import cover_not_found from './images/cover_not_found.jpg'
 
 export interface Book {
     isFavorite: unknown;
@@ -8,6 +8,7 @@ export interface Book {
     key: string;
     author: string[];
     cover_id: number,
+    cover_img: string;
     edition_count: number;
     first_publish_year: number;
     title: string;
@@ -75,6 +76,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                         key: key,
                         author_name: author_name,
                         cover_id: cover_id,
+                        cover_img: cover_id ? `https://covers.openlibrary.org/b/id/${cover_id}-L.jpg` : cover_not_found,
                         edition_count: edition_count,
                         first_publish_year: first_publish_year,
                         title: title,

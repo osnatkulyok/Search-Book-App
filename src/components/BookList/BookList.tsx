@@ -12,7 +12,7 @@ function BookList(): JSX.Element {
 
     const [showFavorites, setShowFavorites] = useState(false);
 
-    const booksWithCovers: BookProps[] = books.map((singleBook) => {
+    const booksWithCovers: BookProps[] = books.map((singleBook: { id: string; cover_id: any; title: any; author_name: any; edition_count: any; first_publish_year: any; }) => {
         return {
             id: singleBook.id
                 ? (singleBook.id as string).replace('/works/', '')
