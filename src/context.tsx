@@ -24,7 +24,7 @@ export const AppContext = createContext<{
     setResultTitle: (resultTitle: string) => void;
     wishlist: Book[];
     addToWishlist: (book: Book) => void;
-    removeFromWishlist: (bookId: string) => void;
+    removeFromWishlist: (bookEditionCount: number) => void;
 }>({
     loading: true,
     books: [],
@@ -48,9 +48,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setWishlist([...wishlist, book]);
     };
 
-    const removeFromWishlist = (bookId: string) => {
-        setWishlist((currentWishlist) => currentWishlist.filter((book) => book.id !== bookId));
+    // const removeFromWishlist = (bookId: string) => {
+    //     setWishlist((currentWishlist) => currentWishlist.filter((book) => book.id !== bookId));
+    // };
+    const removeFromWishlist = (bookEditionCount: number) => {
+        setWishlist((currentWishlist) => currentWishlist.filter((book) => book.edition_count !== bookEditionCount));
     };
+
 
     const fetchBooks = useCallback(async () => {
         setLoading(true);

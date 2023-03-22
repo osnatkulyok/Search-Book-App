@@ -53,11 +53,12 @@ function WishList(): JSX.Element {
     const { wishlist, removeFromWishlist } = useGlobalContext();
     console.log('wishlist:', wishlist);
 
-    const [showFavorites, setShowFavorites] = useState(false);
+    // const [showFavorites, setShowFavorites] = useState(false);
+    const [showFavorites] = useState(false);
 
-    const handleShowFavoritesClick = () => {
-        setShowFavorites(!showFavorites);
-    };
+    // const handleShowFavoritesClick = () => {
+    //     setShowFavorites(!showFavorites);
+    // };
 
     const filteredList = showFavorites
         ? wishlist.filter((item) => item.isFavorite)
@@ -66,9 +67,7 @@ function WishList(): JSX.Element {
     return (
         <div>
             <h2>Wishlist</h2>
-            <button onClick={handleShowFavoritesClick}>
-                {showFavorites ? 'Show All Books' : 'Show Favorites'}
-            </button>
+
             {filteredList.length > 0 ? (
                 filteredList.map((item, index) => {
                     const bookProps: BookProps = {
@@ -78,7 +77,7 @@ function WishList(): JSX.Element {
                         author: item.author_name,
                         edition_count: item.edition_count,
                         first_publish_year: item.first_publish_year,
-                        onAddToWishlist: () => removeFromWishlist(item.id),
+                        onAddToWishlist: () => removeFromWishlist(item.edition_count),
                         isFavorite: true,
                         isWishlist: true,
                     };

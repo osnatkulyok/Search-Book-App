@@ -7,6 +7,7 @@ import { useGlobalContext, Book as BookType } from '../../context';
 export type BookProps = {
     isFavorite: boolean;
     id: string;
+
     cover_img: string;
     title: string;
     author: string[];
@@ -35,7 +36,7 @@ function Book({ id, cover_img, title, author, edition_count, first_publish_year,
         };
 
         if (isFavorite) {
-            removeFromWishlist(id);
+            removeFromWishlist(edition_count);
         } else {
             onAddToWishlist(bookToAdd);
         }

@@ -10,7 +10,8 @@ function BookList(): JSX.Element {
     console.log('wishlist', wishlist);
 
 
-    const [showFavorites, setShowFavorites] = useState(false);
+    // const [showFavorites, setShowFavorites] = useState(false);
+    const [showFavorites] = useState(false);
 
     const booksWithCovers: BookProps[] = books.map((singleBook: { id: string; cover_id: any; title: any; author_name: any; edition_count: any; first_publish_year: any; }) => {
         return {
@@ -43,12 +44,6 @@ function BookList(): JSX.Element {
             <div className="container">
                 <div className="section-title">
                     <h2>{resultTitle}</h2>
-                    <button
-                        className="btn"
-                        onClick={() => setShowFavorites(!showFavorites)}
-                    >
-                        {showFavorites ? 'Show All Books' : 'Show Favorites'}
-                    </button>
                 </div>
                 <div className="booklist-content grid">
                     {booksToDisplay.slice(0, 30).map((item, index) => {
