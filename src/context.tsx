@@ -43,14 +43,36 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const [resultTitle, setResultTitle] = useState<string>("");
     const [wishlist, setWishlist] = useState<Book[]>([]);
 
+
     const addToWishlist = (book: Book) => {
         console.log("Adding book to wishlist:", book); // Add this console.log statement
         setWishlist([...wishlist, book]);
     };
 
-    // const removeFromWishlist = (bookId: string) => {
-    //     setWishlist((currentWishlist) => currentWishlist.filter((book) => book.id !== bookId));
+    // TODO changing the display of 'like' button
+    // const [isClicked, setIsClicked] = useState(false);
+    // const handleWishlistButton = (book: Book) => {
+    //     setIsClicked(!isClicked);
+    //     addToWishlist(book);
     // };
+
+    // const addToWishlist = (book: Book) => {
+    //     console.log("Adding book to wishlist:", book);
+    //     setWishlist([...wishlist, book]);
+    // };
+    //     <button className="btn btn-wishlist" onClick={() => handleWishlistButton(yourBook)}>
+    //     {isClicked ? (
+    //         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+    //             <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+    //         </svg>
+    //     ) : (
+    //         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bookmark-heart" viewBox="0 0 16 16">
+    //             <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
+    //             <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+    //         </svg>
+    //     )}
+    // </button>
+
     const removeFromWishlist = (bookEditionCount: number) => {
         setWishlist((currentWishlist) => currentWishlist.filter((book) => book.edition_count !== bookEditionCount));
     };
@@ -66,6 +88,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             const docs = data.docs || [];
 
             if (docs.length > 0) {
+                // const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
+                //     const {
+                //         key,
+                //         author_name,
+                //         cover_id,
+                //         edition_count,
+                //         first_publish_year,
+                //         title,
+                //     } = bookSingle;
+
+                //     return {
+                //         key: key,
+                //         author_name: author_name,
+                //         cover_id: cover_id,
+                //         cover_img: cover_id ? `https://covers.openlibrary.org/b/id/${cover_id}-L.jpg` : cover_not_found,
+                //         edition_count: edition_count,
+                //         first_publish_year: first_publish_year,
+                //         title: title,
+                //     };
+                // });
                 const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
                     const {
                         key,
@@ -77,7 +119,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                     } = bookSingle;
 
                     return {
-                        key: key,
+                        id: key, // Use 'key' as 'id'
                         author_name: author_name,
                         cover_id: cover_id,
                         cover_img: cover_id ? `https://covers.openlibrary.org/b/id/${cover_id}-L.jpg` : cover_not_found,
@@ -86,6 +128,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                         title: title,
                     };
                 });
+
 
                 setBooks(newBooks);
 
