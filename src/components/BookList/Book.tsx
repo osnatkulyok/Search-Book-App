@@ -113,7 +113,7 @@ function Book({ id, cover_img, title, author, edition_count, first_publish_year,
         };
 
         if (isFavorite) {
-            removeFromWishlist(edition_count);
+            removeFromWishlist(id);
         } else {
             onAddToWishlist(bookToAdd);
         }

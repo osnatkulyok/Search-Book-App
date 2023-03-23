@@ -24,7 +24,7 @@ export const AppContext = createContext<{
     setResultTitle: (resultTitle: string) => void;
     wishlist: Book[];
     addToWishlist: (book: Book) => void;
-    removeFromWishlist: (bookEditionCount: number) => void;
+    removeFromWishlist: (bookId: string) => void;
 }>({
     loading: true,
     books: [],
@@ -73,8 +73,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     //     )}
     // </button>
 
-    const removeFromWishlist = (bookEditionCount: number) => {
-        setWishlist((currentWishlist) => currentWishlist.filter((book) => book.edition_count !== bookEditionCount));
+    // const removeFromWishlist = (bookEditionCount: number) => {
+    //     setWishlist((currentWishlist) => currentWishlist.filter((book) => book.edition_count !== bookEditionCount));
+    // };
+    const removeFromWishlist = (bookId: string) => {
+        setWishlist((currentWishlist) => currentWishlist.filter((book) => book.id !== bookId));
     };
 
 
@@ -88,26 +91,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             const docs = data.docs || [];
 
             if (docs.length > 0) {
-                // const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
-                //     const {
-                //         key,
-                //         author_name,
-                //         cover_id,
-                //         edition_count,
-                //         first_publish_year,
-                //         title,
-                //     } = bookSingle;
-
-                //     return {
-                //         key: key,
-                //         author_name: author_name,
-                //         cover_id: cover_id,
-                //         cover_img: cover_id ? `https://covers.openlibrary.org/b/id/${cover_id}-L.jpg` : cover_not_found,
-                //         edition_count: edition_count,
-                //         first_publish_year: first_publish_year,
-                //         title: title,
-                //     };
-                // });
                 const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
                     const {
                         key,

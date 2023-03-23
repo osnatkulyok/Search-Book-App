@@ -9,7 +9,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 const URL = 'https://openlibrary.org/works/';
 
 // Define a type for the book data
-interface MyBookDetails {
+export interface MyBookDetails {
     description: string;
     title: string;
     cover_img: string;

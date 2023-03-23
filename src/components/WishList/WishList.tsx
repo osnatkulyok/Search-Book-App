@@ -32,7 +32,7 @@ function WishList(): JSX.Element {
                         author: item.author_name,
                         edition_count: item.edition_count,
                         first_publish_year: item.first_publish_year,
-                        onAddToWishlist: () => removeFromWishlist(item.edition_count),
+                        onAddToWishlist: () => removeFromWishlist(item.id),
                         isFavorite: true,
                         isWishlist: true,
                     };

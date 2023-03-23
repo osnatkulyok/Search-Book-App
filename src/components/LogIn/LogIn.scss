@@ -1,7 +1,7 @@
 @import '../../style/index_menu.scss';
 
 h2 {
-    margin-top: 1em;
+    margin-top: 3em;
     margin-left: 13.5%;
     font-size: 3rem;
     text-shadow: 4px 4px 4px rgba(72, 69, 69, 0.4);
@@ -97,7 +97,7 @@ h2 {
 @media screen and (min-width: 768px) {
     h2 {
         font-size: 3.5rem;
-        margin-left: 13%;
+        margin-left: 15%;
     }
 
     .monkey-pic {
@@ -105,13 +105,14 @@ h2 {
 
         img {
             width: 46%;
+            margin-top: 13%;
 
         }
     }
 
     .login-body {
-        right: 27%;
-        width: 38%;
+        right: 34%;
+        width: 30%;
         position: absolute;
         transform: translateY(-50%);
 
