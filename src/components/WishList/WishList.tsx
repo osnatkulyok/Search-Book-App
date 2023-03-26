@@ -34,7 +34,6 @@ function WishList(): JSX.Element {
                             isWishlist: true,
                         };
                         return (
-                            // <div className="book-item-wish" key={`${item.id}-${index}`}>
                             <div key={`${item.id}-${index}`}>
                                 <Book {...bookProps} />
                             </div>

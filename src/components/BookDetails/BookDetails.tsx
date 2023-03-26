@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../Loader/Loader';
-import coverNotFound from '../../images/cover_not_found.jpg';
+import cover_not_found from '../../images/cover_not_found.jpg';
 import './BookDetails.css';
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -53,7 +53,10 @@ function BookDetails(): JSX.Element {
                     const newBook: MyBookDetails = {
                         description: description ? description.value : 'No description found',
                         title: title,
-                        cover_img: covers ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg` : coverNotFound,
+                        // cover_img: covers ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg` : cover_not_found,
+                        cover_img: covers
+                            ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg`
+                            : cover_not_found,
                         subject_places: subject_places ? subject_places.join(', ') : 'No subject places found',
                         subject_times: subject_times ? subject_times.join(', ') : 'No subject times found',
                         subjects: subjects ? subjects.join(', ') : 'No subjects found',
@@ -83,6 +86,7 @@ function BookDetails(): JSX.Element {
     return (
         <section className='book-details'>
             <div className='container'>
+                {/* Button to navigate back to book list page */}
                 <button type='button' className='flex flex-c back-btn' onClick={() => navigate('/book')}>
                     <FaArrowLeft size={22} />
                     <span className='fs-18 fw-6'>Go Back</span>
@@ -90,19 +94,25 @@ function BookDetails(): JSX.Element {
 
                 <div className='book-details-content grid'>
                     <div className='book-details-img'>
+                        {/* Book image */}
                         <img src={book?.cover_img} alt='cover img' />
                     </div>
+                    {/* Book details */}
                     <div className='book-details-info'>
+                        {/* Book title */}
                         <div className='book-details-item title'>
                             <span className='fw-6 fs-24'>{book?.title}</span>
                         </div>
+                        {/* Book description */}
                         <div className='book-details-item description'>
                             <span>{book?.description}</span>
                         </div>
+                        {/* Book subject places */}
                         <div className='book-details-item'>
                             <span className='fw-6'>Subject Places: </span>
                             <span className='text-italic'>{book?.subject_places}</span>
                         </div>
+                        {/* Book subjects */}
                         <div className='book-details-item'>
                             <span className='fw-6'>Subjects: </span>
                             <span>{book?.subjects}</span>
