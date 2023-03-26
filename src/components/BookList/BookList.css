@@ -20,6 +20,12 @@
     max-width: 120px;
   }
 }
+.book {
+  display: flex;
+  margin-right: 30%;
+  margin-left: 15%;
+}
+
 .booklist,
 .book-details {
   padding: 3rem 0;
