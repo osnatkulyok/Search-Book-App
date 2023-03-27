@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect, useCallback, createContext } fr
 import cover_not_found from './images/cover_not_found.jpg'
 
 export interface Book {
+    cover_id: number,
     isFavorite: unknown;
     author_name: string[];
     id: string;
     key: string;
     author: string[];
-    cover_id: number,
     cover_img: string;
     edition_count: number;
     first_publish_year: number;
@@ -49,33 +49,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setWishlist([...wishlist, book]);
     };
 
-    // TODO changing the display of 'like' button
-    // const [isClicked, setIsClicked] = useState(false);
-    // const handleWishlistButton = (book: Book) => {
-    //     setIsClicked(!isClicked);
-    //     addToWishlist(book);
-    // };
-
-    // const addToWishlist = (book: Book) => {
-    //     console.log("Adding book to wishlist:", book);
-    //     setWishlist([...wishlist, book]);
-    // };
-    //     <button className="btn btn-wishlist" onClick={() => handleWishlistButton(yourBook)}>
-    //     {isClicked ? (
-    //         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
-    //             <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-    //         </svg>
-    //     ) : (
-    //         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bookmark-heart" viewBox="0 0 16 16">
-    //             <path fillRule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
-    //             <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-    //         </svg>
-    //     )}
-    // </button>
-
-    // const removeFromWishlist = (bookEditionCount: number) => {
-    //     setWishlist((currentWishlist) => currentWishlist.filter((book) => book.edition_count !== bookEditionCount));
-    // };
     const removeFromWishlist = (bookId: string) => {
         setWishlist((currentWishlist) => currentWishlist.filter((book) => book.id !== bookId));
     };
@@ -89,6 +62,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             const data = await response.json();
 
             const docs = data.docs || [];
+            console.log(docs);
 
             if (docs.length > 0) {
                 const newBooks = docs.slice(0, 20).map((bookSingle: any) => {

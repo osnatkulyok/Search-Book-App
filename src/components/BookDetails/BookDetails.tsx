@@ -53,14 +53,16 @@ function BookDetails(): JSX.Element {
                     const newBook: MyBookDetails = {
                         description: description ? description.value : 'No description found',
                         title: title,
-                        // cover_img: covers ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg` : cover_not_found,
                         cover_img: covers
-                            ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg`
+                            ? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
                             : cover_not_found,
                         subject_places: subject_places ? subject_places.join(', ') : 'No subject places found',
                         subject_times: subject_times ? subject_times.join(', ') : 'No subject times found',
                         subjects: subjects ? subjects.join(', ') : 'No subjects found',
                     };
+                    console.log("Book cover URL:", newBook.cover_img);
+                    console.log("New book details:", newBook);
+
 
                     // Update the state with the new book object
                     setBook(newBook);
@@ -78,6 +80,8 @@ function BookDetails(): JSX.Element {
         }
         getBookDetails();
     }, [id]);
+
+
 
     // Render a loading indicator while the book details are being fetched
     if (loading) return <Loading />;
