@@ -1,4 +1,48 @@
 
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import './BookList.css';
+// import { useGlobalContext, Book as BookType } from '../../context';
+
+// export type BookProps = {
+//     isFavorite: boolean;
+//     id: string;
+//     cover_img: string;
+//     title: string;
+//     author: string[];
+//     edition_count: number;
+//     first_publish_year: number;
+//     isWishlist?: boolean;
+//     onAddToWishlist: (book: BookType) => void;
+// };
+
+// function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
+//     const { removeFromWishlist } = useGlobalContext();
+
+//     function handleWishlistButton() {
+//         const bookToAdd = {
+//             id,
+//             title,
+//             author,
+//             cover_img,
+//             edition_count,
+//             first_publish_year,
+//             key: '',
+//             author_name: author,
+//             cover_id: 0,
+//             isFavorite: isFavorite,
+//         };
+
+//         if (isFavorite) {
+//             removeFromWishlist(id);
+//         } else {
+//             onAddToWishlist(bookToAdd);
+//         }
+//     }
+//     const handleClick = () => {
+//         console.log('clicked');
+//     };
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './BookList.css';
@@ -14,7 +58,10 @@ export type BookProps = {
     first_publish_year: number;
     isWishlist?: boolean;
     onAddToWishlist: (book: BookType) => void;
+    cover_id?: number | string; // Add this line to include the cover_id property
+    children?: React.ReactNode; // Add this line
 };
+
 
 function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
     const { removeFromWishlist } = useGlobalContext();
@@ -27,9 +74,9 @@ function Book({ id, cover_img, title, author, edition_count, first_publish_year,
             cover_img,
             edition_count,
             first_publish_year,
-            key: '',
+            key: id,
             author_name: author,
-            cover_id: 0,
+            cover_id: 0, // Add the cover_id property here, with a default value if not available
             isFavorite: isFavorite,
         };
 
@@ -39,6 +86,7 @@ function Book({ id, cover_img, title, author, edition_count, first_publish_year,
             onAddToWishlist(bookToAdd);
         }
     }
+
     const handleClick = () => {
         console.log('clicked');
     };

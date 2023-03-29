@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect, useCallback, createContext } from "react";
 import cover_not_found from './images/cover_not_found.jpg'
 
+
 export interface Book {
-    cover_id: number,
     isFavorite: unknown;
     author_name: string[];
     id: string;
     key: string;
     author: string[];
+    cover_id: number;
     cover_img: string;
     edition_count: number;
     first_publish_year: number;
@@ -36,6 +37,7 @@ export const AppContext = createContext<{
     removeFromWishlist: () => { },
 });
 
+
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState<string>("the lost world");
     const [books, setBooks] = useState<Book[]>([]);
@@ -62,14 +64,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             const data = await response.json();
 
             const docs = data.docs || [];
-            console.log(docs);
+            console.log("docs", docs);
 
             if (docs.length > 0) {
                 const newBooks = docs.slice(0, 20).map((bookSingle: any) => {
                     const {
                         key,
                         author_name,
-                        cover_id,
+                        cover_i,
                         edition_count,
                         first_publish_year,
                         title,
@@ -78,12 +80,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                     return {
                         id: key, // Use 'key' as 'id'
                         author_name: author_name,
-                        cover_id: cover_id,
-                        cover_img: cover_id ? `https://covers.openlibrary.org/b/id/${cover_id}-L.jpg` : cover_not_found,
+                        cover_id: cover_i,
+                        cover_img: cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : cover_not_found,
                         edition_count: edition_count,
                         first_publish_year: first_publish_year,
                         title: title,
                     };
+
                 });
 
 

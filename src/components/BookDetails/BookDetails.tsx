@@ -48,6 +48,8 @@ function BookDetails(): JSX.Element {
                         subject_times,
                         subjects,
                     } = data;
+                    console.log("covers", covers);
+
 
                     // Create a new book object with the extracted properties
                     const newBook: MyBookDetails = {
