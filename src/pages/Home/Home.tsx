@@ -18,13 +18,10 @@ function Home(): JSX.Element {
     return (
         <main>
             <Navbar isLoggedIn={isLoggedIn} user={username} />
-            {isLoggedIn && (location.pathname.includes("/book/") || location.pathname === "/wishlist") ? null : (isLoggedIn ? <Header /> : <LogIn onLogin={handleLogin} />)}
-
-
-
-            {/* {isLoggedIn && location.pathname.includes("/book/") ? null : (isLoggedIn ? <Header /> : <LogIn onLogin={handleLogin} />)} */}
+            {/* {isLoggedIn && (location.pathname.includes("/book/") || location.pathname === "/wishlist") ? null : (isLoggedIn ? <Header /> : <LogIn onLogin={handleLogin} />)} */}
+            {isLoggedIn && (location.pathname.includes("/book/") || location.pathname === "/wishlist" || location.pathname === "/about") ? null : (isLoggedIn ? <Header /> : <LogIn onLogin={handleLogin} />)}
             {isLoggedIn && <Outlet />}
-            {/* {isLoggedIn && location.pathname === '/wishlist' && <WishList />} */}
+
 
         </main>
     );

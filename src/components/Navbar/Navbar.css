@@ -139,5 +139,6 @@
   }
   .navbar-nav {
     display: flex;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=Navbar.css.map */
