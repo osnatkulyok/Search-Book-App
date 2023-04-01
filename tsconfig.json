@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["file-loader"],
     "baseUrl": ".",
     "paths": {
       "@images/*": ["src/images/*"]

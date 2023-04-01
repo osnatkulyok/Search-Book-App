@@ -1,48 +1,3 @@
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import './BookList.css';
-// import { useGlobalContext, Book as BookType } from '../../context';
-
-// export type BookProps = {
-//     isFavorite: boolean;
-//     id: string;
-//     cover_img: string;
-//     title: string;
-//     author: string[];
-//     edition_count: number;
-//     first_publish_year: number;
-//     isWishlist?: boolean;
-//     onAddToWishlist: (book: BookType) => void;
-// };
-
-// function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
-//     const { removeFromWishlist } = useGlobalContext();
-
-//     function handleWishlistButton() {
-//         const bookToAdd = {
-//             id,
-//             title,
-//             author,
-//             cover_img,
-//             edition_count,
-//             first_publish_year,
-//             key: '',
-//             author_name: author,
-//             cover_id: 0,
-//             isFavorite: isFavorite,
-//         };
-
-//         if (isFavorite) {
-//             removeFromWishlist(id);
-//         } else {
-//             onAddToWishlist(bookToAdd);
-//         }
-//     }
-//     const handleClick = () => {
-//         console.log('clicked');
-//     };
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './BookList.css';
@@ -58,9 +13,10 @@ export type BookProps = {
     first_publish_year: number;
     isWishlist?: boolean;
     onAddToWishlist: (book: BookType) => void;
-    cover_id?: number | string; // Add this line to include the cover_id property
-    children?: React.ReactNode; // Add this line
+    cover_id?: number | string;
+    children?: React.ReactNode;
 };
+
 
 
 function Book({ id, cover_img, title, author, edition_count, first_publish_year, onAddToWishlist, isFavorite }: BookProps): JSX.Element {
@@ -117,6 +73,11 @@ function Book({ id, cover_img, title, author, edition_count, first_publish_year,
                     <span className="text-capitalize fw-7">First Publish Year: </span>
                     <span>{first_publish_year}</span>
                 </div>
+
+
+
+
+
                 <div className="book-item-info-item wishlist-btn">
                     <button className="btn btn-wishlist" onClick={handleWishlistButton}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bookmark-heart" viewBox="0 0 16 16">

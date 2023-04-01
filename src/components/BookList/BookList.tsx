@@ -8,7 +8,14 @@ import './BookList.css';
 
 function BookList(): JSX.Element {
     // Destructure the properties from the global context
-    const { books, loading, resultTitle, addToWishlist } = useGlobalContext();
+    const { books, loading, resultTitle, addToWishlist, wishlist } = useGlobalContext();
+    console.log('books', books);
+
+    // Log the numbers extracted from the book ids to the console
+    console.log("id array", books.map((book) => book.id.replace(/^\/works\/OL/, '')));
+
+    // Log the wishlist to the console
+    console.log('wishlist', wishlist);
 
 
     const booksWithCovers: BookProps[] = books.map((singleBook: { id: string; cover_id: any; title: any; author_name: any; edition_count: any; first_publish_year: any; }) => {
@@ -28,6 +35,15 @@ function BookList(): JSX.Element {
             isFavorite: false,
         };
     });
+
+
+
+
+
+
+    console.log("id array after map", booksWithCovers.map((book) => book.cover_id));
+
+
 
 
     // Render a loading indicator if the books are still loading

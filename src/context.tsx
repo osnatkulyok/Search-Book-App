@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useCallback, createContext } fr
 import cover_not_found from './images/cover_not_found.jpg'
 
 
+// Define the Book interface
 export interface Book {
     isFavorite: unknown;
     author_name: string[];
@@ -15,7 +16,9 @@ export interface Book {
     title: string;
 }
 
+// Define the URL for the Open Library API
 const URL = "https://openlibrary.org/search.json?title=";
+
 
 export const AppContext = createContext<{
     loading: boolean;
@@ -38,6 +41,7 @@ export const AppContext = createContext<{
 });
 
 
+// Create the AppProvider component to wrap the entire application with the AppContext
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState<string>("the lost world");
     const [books, setBooks] = useState<Book[]>([]);
