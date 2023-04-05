@@ -66,6 +66,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         try {
             const response = await fetch(`${URL}${searchTerm}`);
             const data = await response.json();
+            console.log("data", data);
+
 
             const docs = data.docs || [];
             console.log("docs", docs);

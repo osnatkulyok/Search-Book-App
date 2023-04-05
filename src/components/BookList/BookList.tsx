@@ -41,7 +41,7 @@ function BookList(): JSX.Element {
 
 
 
-    console.log("id array after map", booksWithCovers.map((book) => book.cover_id));
+    // console.log("id array after map", booksWithCovers.map((book) => book.cover_id));
 
 
 
