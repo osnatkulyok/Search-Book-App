@@ -96,7 +96,7 @@ function BookDetails(): JSX.Element {
     // Render the book details once they have been fetched
     return (
         <section className='book-details'>
-            {id && <RelatedBooks bookId={id} />}
+            {/* {id && <RelatedBooks bookId={id} />} */}
 
             <div className='container'>
                 {/* Button to navigate back to book list page */}
