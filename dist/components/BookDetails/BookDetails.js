@@ -41,9 +41,11 @@ const Loader_1 = __importDefault(require("../Loader/Loader"));
 const cover_not_found_jpg_1 = __importDefault(require("../../images/cover_not_found.jpg"));
 require("./BookDetails.css");
 const fa_1 = require("react-icons/fa");
+const Description_1 = __importDefault(require("./Description"));
 // The base URL for fetching book details
 const URL = 'https://openlibrary.org/works/';
 function BookDetails() {
+    var _a, _b, _c;
     // Get the book ID from the URL parameters
     // Define a type for the params object returned by useParams()
     const { id } = (0, react_router_dom_1.useParams)();
@@ -64,15 +66,20 @@ function BookDetails() {
                     if (data) {
                         // Extract the relevant book properties from the API response
                         const { description, title, covers, subject_places, subject_times, subjects, } = data;
+                        console.log("covers", covers);
                         // Create a new book object with the extracted properties
                         const newBook = {
                             description: description ? description.value : 'No description found',
                             title: title,
-                            cover_img: covers ? `https://openlibrary.org/b/id/${covers[0]}-L.jpg` : cover_not_found_jpg_1.default,
+                            cover_img: covers
+                                ? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
+                                : cover_not_found_jpg_1.default,
                             subject_places: subject_places ? subject_places.join(', ') : 'No subject places found',
                             subject_times: subject_times ? subject_times.join(', ') : 'No subject times found',
                             subjects: subjects ? subjects.join(', ') : 'No subjects found',
                         };
+                        console.log("Book cover URL:", newBook.cover_img);
+                        console.log("New book details:", newBook);
                         // Update the state with the new book object
                         setBook(newBook);
                     }
@@ -113,6 +120,26 @@ function BookDetails() {
                         react_1.default.createElement("span", { className: 'text-italic' }, book === null || book === void 0 ? void 0 : book.subject_places)),
                     react_1.default.createElement("div", { className: 'book-details-item' },
                         react_1.default.createElement("span", { className: 'fw-6' }, "Subjects: "),
-                        react_1.default.createElement("span", null, book === null || book === void 0 ? void 0 : book.subjects)))))));
+                        react_1.default.createElement("span", null, book === null || book === void 0 ? void 0 : book.subjects)),
+                    react_1.default.createElement("ul", { className: 'book-details-item' },
+                        react_1.default.createElement("li", null, book && (react_1.default.createElement("a", { href: `https://en.wikipedia.org/wiki/${((_a = book.title) === null || _a === void 0 ? void 0 : _a.replace(/ /g, '_')) || 'Special:Search'}?title=Special%3ASearch&ns0=1`, target: "_blank", rel: "noreferrer" }, "View on Wikipedia"))),
+                        react_1.default.createElement("li", null, book && (react_1.default.createElement("a", { href: `https://en.wikipedia.org/w/index.php?search=${(_b = book === null || book === void 0 ? void 0 : book.title) === null || _b === void 0 ? void 0 : _b.replace(/ /g, '+')}&title=Special%3ASearch&ns0=1`, target: "_blank", rel: "noreferrer" }, "View"))),
+                        react_1.default.createElement("li", null,
+                            react_1.default.createElement(Description_1.default, { bookUrl: `https://www.jkrowling.com/book/${(_c = book === null || book === void 0 ? void 0 : book.title) === null || _c === void 0 ? void 0 : _c.replace(/(and|the)/gi, '').replace(/[^a-zA-Z\s]/g, "").toLowerCase().replace(/\s+/g, "-")}/` })),
+                        react_1.default.createElement("li", null,
+                            react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", className: "bi bi-cart-plus-fill", viewBox: "0 0 16 16" },
+                                react_1.default.createElement("path", { d: "M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" })),
+                            react_1.default.createElement("a", { href: `https://www.amazon.com/s?k=${book === null || book === void 0 ? void 0 : book.title}`, target: '_blank', rel: 'noreferrer' },
+                                react_1.default.createElement("button", { className: 'buy-btn' }, "Buy on Amazon"))),
+                        react_1.default.createElement("li", null,
+                            react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", className: "bi bi-cart-plus-fill", viewBox: "0 0 16 16" },
+                                react_1.default.createElement("path", { d: "M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" })),
+                            react_1.default.createElement("a", { href: `https://www.betterworldbooks.com/search/results?q=${book === null || book === void 0 ? void 0 : book.title}`, target: '_blank', rel: 'noreferrer' },
+                                react_1.default.createElement("button", { className: 'buy-btn' }, "Buy on BetterWorldBooks"))),
+                        react_1.default.createElement("li", null,
+                            react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", className: "bi bi-cart-plus-fill", viewBox: "0 0 16 16" },
+                                react_1.default.createElement("path", { d: "M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" })),
+                            react_1.default.createElement("a", { href: `https://www.goodreads.com/search?utf8=%E2%9C%93&query=${book === null || book === void 0 ? void 0 : book.title}`, target: '_blank', rel: 'noreferrer' },
+                                react_1.default.createElement("button", { className: 'buy-btn' }, "Buy on Goodreads")))))))));
 }
 exports.default = BookDetails;
