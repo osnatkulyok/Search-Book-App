@@ -9,7 +9,7 @@ const Description: React.FC<Props> = ({ bookUrl }: Props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(bookUrl);
+            const response = await fetch(`/api/proxy?url=${encodeURIComponent(bookUrl)}`);
             const html = await response.text();
 
             console.log("html", html);
