@@ -153,7 +153,6 @@ function BookDetails(): JSX.Element {
                             </li>
                             <li>
                                 <Description bookUrl={`https://www.jkrowling.com/book/${book?.title?.replace(/(and|the)/gi, '').replace(/[^a-zA-Z\s]/g, "").toLowerCase().replace(/\s+/g, "-")}/`} />
-
                             </li>
                             {/* <li>
                                 {book?.title && (
