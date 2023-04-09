@@ -1,13 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loading from '../Loader/Loader';
 import cover_not_found from '../../images/cover_not_found.jpg';
 import './BookDetails.css';
 import { FaArrowLeft } from 'react-icons/fa';
-import RelatedBooks from './RelatedBooks';
-import Description from './Description'
 
 
 
@@ -54,7 +50,6 @@ function BookDetails(): JSX.Element {
                         subject_times,
                         subjects,
                     } = data;
-                    console.log("covers", covers);
 
 
                     // Create a new book object with the extracted properties
@@ -68,9 +63,6 @@ function BookDetails(): JSX.Element {
                         subject_times: subject_times ? subject_times.join(', ') : 'No subject times found',
                         subjects: subjects ? subjects.join(', ') : 'No subjects found',
                     };
-                    console.log("Book cover URL:", newBook.cover_img);
-                    console.log("New book details:", newBook);
-
 
                     // Update the state with the new book object
                     setBook(newBook);
@@ -100,6 +92,7 @@ function BookDetails(): JSX.Element {
             {/* {id && <RelatedBooks bookId={id} />} */}
 
             <div className='container'>
+
                 {/* Button to navigate back to book list page */}
                 <button type='button' className='flex flex-c back-btn' onClick={() => navigate('/book')}>
                     <FaArrowLeft size={22} />
@@ -107,25 +100,31 @@ function BookDetails(): JSX.Element {
                 </button>
 
                 <div className='book-details-content grid'>
+
                     <div className='book-details-img'>
                         {/* Book image */}
                         <img src={book?.cover_img} alt='cover img' />
                     </div>
+
                     {/* Book details */}
                     <div className='book-details-info'>
+
                         {/* Book title */}
                         <div className='book-details-item title'>
                             <span className='fw-6 fs-24'>{book?.title}</span>
                         </div>
+
                         {/* Book description */}
                         <div className='book-details-item description'>
                             <span>{book?.description}</span>
                         </div>
+
                         {/* Book subject places */}
                         <div className='book-details-item'>
                             <span className='fw-6'>Subject Places: </span>
                             <span className='text-italic'>{book?.subject_places}</span>
                         </div>
+
                         {/* Book subjects */}
                         <div className='book-details-item'>
                             <span className='fw-6'>Subjects: </span>
@@ -136,13 +135,21 @@ function BookDetails(): JSX.Element {
                         <ul className='book-details-item'>
 
                             <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                                </svg>
                                 {book && (
                                     <a href={`https://en.wikipedia.org/wiki/${book.title?.replace(/ /g, '_') || 'Special:Search'}?title=Special%3ASearch&ns0=1`} target="_blank" rel="noreferrer">
                                         View on Wikipedia
                                     </a>
                                 )}
                             </li>
+
                             <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-book-half" viewBox="0 0 16 16">
+                                    <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                                </svg>
                                 {book && (
                                     <a href={`https://en.wikipedia.org/w/index.php?search=${book?.title?.replace(/ /g, '+')}&title=Special%3ASearch&ns0=1`} target="_blank" rel="noreferrer">
                                         View
@@ -151,21 +158,7 @@ function BookDetails(): JSX.Element {
                                 )}
 
                             </li>
-                            <li>
-                                <Description bookUrl={`https://www.jkrowling.com/book/${book?.title?.replace(/(and|the)/gi, '').replace(/[^a-zA-Z\s]/g, "").toLowerCase().replace(/\s+/g, "-")}/`} />
-                            </li>
-                            {/* <li>
-                                {book?.title && (
-                                    <a href={`https://www.jkrowling.com/book/${book.title.replace(/(and|the)/gi, '').replace(/[^a-zA-Z\s]/g, "").toLowerCase().replace(/\s+/g, "-")}/`} target="_blank" rel="noreferrer">
-                                        View on J.K. Rowling's website
-                                    </a>
-                                )}
-                            </li> */}
-                            {/* <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
-                                </svg>
-                            </li> */}
+
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
@@ -174,6 +167,7 @@ function BookDetails(): JSX.Element {
                                     <button className='buy-btn'>Buy on Amazon</button>
                                 </a>
                             </li>
+
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />

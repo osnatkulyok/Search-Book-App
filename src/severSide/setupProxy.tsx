@@ -1,14 +1,14 @@
-// import { createProxyMiddleware } from 'http-proxy-middleware';
-// import { Application } from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import { Application } from 'express';
 
-// const proxyMiddleware = createProxyMiddleware({
-//     target: 'https://www.jkrowling.com',
-//     changeOrigin: true
-// });
+const proxyMiddleware = createProxyMiddleware({
+    target: 'https://www.jkrowling.com',
+    changeOrigin: true
+});
 
-// export const configureProxy = (app: Application) => {
-//     app.use('/api', proxyMiddleware);
-// };
+export const configureProxy = (app: Application) => {
+    app.use('/api', proxyMiddleware);
+};
 // ////////////////
 // import express from 'express';
 // import { createProxyMiddleware, Options } from 'http-proxy-middleware';
@@ -37,16 +37,30 @@
 //     console.log('Proxy server listening on port 3001');
 // });
 ////////////////////
-import express from 'express';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+// import express from 'express';
+// import { createProxyMiddleware } from 'http-proxy-middleware';
 
-const app = express();
+// const app = express();
 
-app.use('/book', createProxyMiddleware({
-    target: 'https://www.jkrowling.com',
-    changeOrigin: true,
-}));
+// app.use('/book', createProxyMiddleware({
+//     target: 'https://www.jkrowling.com',
+//     changeOrigin: true,
+// }));
 
-app.listen(3001, () => {
-    console.log('Proxy server listening on port 3001');
-});
+// app.listen(3001, () => {
+//     console.log('Proxy server listening on port 3001');
+// });
+//////////////////
+// import axios from 'axios';
+
+// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+// const targetUrl = 'https://www.jkrowling.com/book/harry-potter-philosophers-stone/';
+
+// axios.get(proxyUrl + targetUrl)
+//     .then((response: { data: any; }) => {
+//         console.log(response.data);
+//     })
+//     .catch((error: any) => {
+//         console.error(error);
+//     });
+///////////////////////
